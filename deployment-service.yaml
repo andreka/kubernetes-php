@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-app
+spec:
+  selector:
+    matchLabels:
+      app: php-app
+  template:
+    metadata:
+      labels:
+        app: php-app
+    spec:
+      containers:
+      - name: php-app
+        image: php:8.3.26RC1-zts-alpine3.21
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 80
+        env:
+        - name: MYSQL_DATABASE_SERVICE
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_URL
+              name: php-app-configmap
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_DATABASE
+              name: php-app-configmap
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_USER
+              name: php-app-secret
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_PASSWORD
+              name: php-app-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-app-service
+spec:
+  type: NodePort
+  selector:
+    app: php-app
+  ports:
+  - port: 8080
+    targetPort: 80
+    nodePort: 31000
