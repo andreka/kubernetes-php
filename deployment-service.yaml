@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: php-app
-        image: php:8.3.26RC1-zts-alpine3.21
+        image: andrekaparwasana1985/custom-nginx
         resources:
           limits:
             memory: "128Mi"
@@ -53,6 +53,6 @@ spec:
   selector:
     app: php-app
   ports:
-  - port: 8080
+  - port: 8081
     targetPort: 80
     nodePort: 31000
