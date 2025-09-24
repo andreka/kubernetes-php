@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: php-app
-        image: andrekaparwasana1985/custom-nginx
+        image: andrekaparwasana1985/custom-nginx:1.0
         resources:
           limits:
             memory: "128Mi"
