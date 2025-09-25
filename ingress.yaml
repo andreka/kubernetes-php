@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: andreka-ingress
+  namespace: php-andreka
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /php-andreka/(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: php-app-service
+            port:
+              number: 80
+      #- path: /app
+      #  pathType: Prefix
+      #  backend:
+      #    service:
+      #      name: app-service
+      #      port:
+      #        number: 80
