@@ -15,6 +15,7 @@ spec:
       containers:
       - name: php-app
         image: andrekaparwasana1985/custom-nginx:1.0
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "128Mi"
