@@ -4,8 +4,9 @@ metadata:
   name: andreka-ingress
   namespace: php-andreka
 spec:
+  ingressClassName: nginx
   rules:
-  - host: example.com
+  - host: andreka.local
     http:
       paths:
       - path: /php-andreka/(/|$)(.*)
