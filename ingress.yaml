@@ -15,7 +15,7 @@ spec:
           service:
             name: php-app-service
             port:
-              number: 80
+              number: 8080
       #- path: /app
       #  pathType: Prefix
       #  backend:
