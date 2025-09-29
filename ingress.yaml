@@ -9,7 +9,7 @@ spec:
   - host: andreka.local
     http:
       paths:
-      - path: /php-andreka/
+      - path: /php-andreka
         pathType: Prefix
         backend:
           service:
@@ -22,4 +22,5 @@ spec:
           service:
             name: todo-app-service
             port:
-              number: 8080
+              number: 8081
+     
